@@ -1,10 +1,13 @@
+
 import { Injectable, signal } from '@angular/core';
 import { Film } from '../models/film';
+
 @Injectable({
   providedIn: 'root',
 })
 export class Favorites {
   films = signal<Film[]>(this.read());
+
   has(id: number) {
     for (const film of this.films()) {
       if (film.kinopoiskId === id) {
@@ -13,15 +16,23 @@ export class Favorites {
     }
     return false;
   }
+
   toggle(film: Film) {
     const updated: Film[] = [];
+    let found = false;
 
-    for (const savedFilms of this.films()) {
-      if (savedFilms.kinopoiskId !== film.kinopoiskId) {
-        updated.push(savedFilms);
+    for (const savedFilm of this.films()) {
+      if (savedFilm.kinopoiskId === film.kinopoiskId) {
+        found = true;
+      } else {
+        updated.push(savedFilm);
       }
     }
-    updated.push(film);
+
+    if (!found) {
+      updated.push(film);
+    }
+
     this.films.set(updated);
     this.save();
   }
@@ -34,14 +45,18 @@ export class Favorites {
   read(): Film[] {
     try {
       const text = localStorage.getItem('favorites-bd');
+
       if (text === null) {
         return [];
       }
+
       const films: Film[] = [];
       const saved = JSON.parse(text);
+
       for (const film of saved) {
         films.push(film);
       }
+
       return films;
     } catch {
       return [];
