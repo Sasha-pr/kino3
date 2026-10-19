@@ -1,0 +1,23 @@
+
+<section class="catalog" id="catalog">
+  <h1>{{ title }}</h1>
+  <p class="subtitle">Выбирай фильмы для своего вечера</p>
+
+  @if (loading()) {
+    <p class="message">Загружаем фильмы...</p>
+  } @else {
+    @if (films().length === 0) {
+      <p class="message">Не удалось загрузить фильмы. Попробуй позже.</p>
+    } @else {
+      <div class="film-list">
+        @for (film of films(); track film.kinopoiskId) {
+          <app-film-card
+            [film]="film"
+            [saved]="favorites.has(film.kinopoiskId)"
+            (toggleFavorite)="favorites.toggle($event)"
+          />
+        }
+      </div>
+    }
+  }
+</section>

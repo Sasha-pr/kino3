@@ -1,0 +1,13 @@
+<article>
+  <img [src]="film().posterUrlPreview" [alt]="film().nameRu || 'Постер'" height="240" width="240" />
+  <h2>{{ film().nameRu }}</h2>
+  <p>{{ film().year }}</p>
+  @if (film().ratingKinopoisk !== null) {
+    <p>
+      Рейтинг: <b>{{ film().ratingKinopoisk }}</b>
+    </p>
+  }
+  <button type="button" (click)="toggleFavorite.emit(film())">
+    {{ saved() ? 'Убрать из избранного' : 'Буду смотреть' }}
+  </button>
+</article>

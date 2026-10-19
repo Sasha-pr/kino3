@@ -1,0 +1,43 @@
+
+.catalog {
+  min-height: 70vh;
+  padding: 40px 6%;
+  background: #f4f5f9;
+}
+
+.catalog h1 {
+  margin: 0;
+  color: #171923;
+  font-size: 36px;
+}
+
+.subtitle {
+  margin-bottom: 32px;
+  color: #666b7a;
+}
+
+.film-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 24px;
+}
+
+.message {
+  padding: 30px 0;
+  color: #555;
+}
+
+@media (max-width: 600px) {
+  .catalog {
+    padding: 28px 5%;
+  }
+
+  .catalog h1 {
+    font-size: 28px;
+  }
+
+  .film-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+}

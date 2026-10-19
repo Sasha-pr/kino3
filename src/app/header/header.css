@@ -1,0 +1,32 @@
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 6%;
+  background: #171923;
+  color: white;
+}
+
+.logo {
+  color: #f5c518;
+  font-size: 28px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.navigation {
+  display: flex;
+  gap: 24px;
+}
+
+.navigation a,
+.favorites {
+  color: white;
+  text-decoration: none;
+}
+
+.navigation a:hover,
+.favorites:hover {
+  color: #f5c518;
+}
